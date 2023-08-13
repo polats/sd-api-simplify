@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
     // You can customize this payload or get it from the incoming request (e.g., req.body)
     const payload = {
-      "prompt": x + " " + y,
+      "prompt": x + ", " + y + ", hearts, fluffy",
       "steps": 20,
       "styles": [
         "soulcats"
@@ -41,6 +41,9 @@ export default async function handler(req, res) {
 
     // Convert the base64 string into a buffer and set the content type as 'image/*'
     const buffer = Buffer.from(firstImageBase64, 'base64');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept');
     res.setHeader('Content-Type', 'image/png');
     res.status(200).send(buffer);
   } catch (error) {
